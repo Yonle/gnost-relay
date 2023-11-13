@@ -318,6 +318,10 @@ func (q *ParsedFilter) UnmarshalJSON(payload []byte) error {
 	if visiterr != nil {
 		return visiterr
 	}
+
+	if q.Authors == nil && q.Etags == nil && q.Dtags == nil {
+		return fmt.Errorf("atleast 'authors', '#e', or '#p' is in filter");
+	}
 	return nil
 }
 
